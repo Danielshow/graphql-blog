@@ -6,7 +6,7 @@
   "author": "Danielshow",
   "license": "MIT",
   "scripts": {
-    "start:dev": "babel-node src/index.js"
+    "start:dev": "nodemon src/index.js --exec babel-node"
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",
@@ -14,5 +14,8 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.0",
     "graphql-yoga": "^1.17.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
