@@ -51,7 +51,32 @@ const typeDefs = `
     me: User!
     post: Post!
   }
-  
+ 
+  type Mutation {
+    createUser(data: CreateUserInput!): User!
+    createPost(data: CreatePostInput!): Post!
+    createComment(data: CreateCommentInput!): Comment!
+  }
+
+  input CreateUserInput {
+    name: String!
+    email: String!
+    age: Int
+  }
+
+  input CreatePostInput {
+    title: String!
+    body: String!
+    publised: Boolean!
+    authorId: ID!
+  }
+
+  input CreateCommentInput {
+    text: String!
+    authorId: ID!
+    postId: ID!
+  }
+
   type User {
     id: ID!
     name: String!
@@ -155,6 +180,78 @@ const resolvers = {
         return parent.id === post.commentId
       })
     }
+  },
+
+  Mutation: {
+    createUser(parent, args, ctx, info) {
+      emailTaken = users.some((user) => {
+        return user.email === args.data.email
+      })
+
+      if (emailTaken) {
+        throw new Error("Email already taken")
+      }
+
+      const user = {
+        id: Time.now(),
+        email: args.data.email,
+        name: args.data.name,
+        age: args.data.age
+      }
+
+      users.push(user)
+      return user
+    },
+
+    createPost(parent, args, ctx, info) {
+      isUserExist = users.some((user) => {
+        return user.id === args.data.authorId 
+      })
+
+      if (!isUserExist) {
+        throw new Error("User does not exist")
+      }
+
+      const post = {
+        id: Time.now(),
+        title: args.data.title,
+        body: args.data.body,
+        published: args.data.published,
+        authorId: args.data.authorId
+      }
+
+      posts.push(post)
+      return post
+    },
+
+    createComment(parent, args, ctx, info) {
+      isUserExist = users.some((user) => {
+        return user.id === args.data.author.id
+      })
+
+      if (!isUserExist) {
+        throw new Error("User does not Exist")
+      }
+
+      isPostExist = posts.some((post) => {
+        return post.id === args.data.postId && post.published == true
+      })
+
+      if (!isPostExist) {
+        throw new Error("Post not found")
+      }
+
+      const comment = {
+        id: Time.now(),
+        text: args.data.text,
+        authorId: args.data.authorId,
+        postId: args.data.postId
+      }
+
+      comments.push(comment)
+
+      return comment
+    }
   }
 }
 
@@ -165,4 +262,4 @@ const server = new GraphQLServer({
 
 server.start(() => {
   console.log("The server has started");
-});
+})
