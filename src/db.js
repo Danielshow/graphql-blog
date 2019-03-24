@@ -14,7 +14,7 @@ const posts = [{
   id: 1,
   title: "Going home",
   body: "Home sweet home",
-  published: false,
+  published: true,
   authorId: 1,
   commentId: 1
 }, {
