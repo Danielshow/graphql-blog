@@ -11,9 +11,7 @@ const Mutation = {
 
     const user = {
       id: uuidv4(),
-      email: args.data.email,
-      name: args.data.name,
-      age: args.data.age
+      ...args.data
     }
 
     db.users.push(user)
@@ -83,10 +81,7 @@ const Mutation = {
 
     const post = {
       id: uuidv4(),
-      title: args.data.title,
-      body: args.data.body,
-      published: args.data.published,
-      authorId: args.data.authorId
+      ...args.data
     }
 
     db.posts.push(post)
@@ -144,9 +139,7 @@ const Mutation = {
 
     const comment = {
       id: uuidv4(),
-      text: args.data.text,
-      authorId: args.data.authorId,
-      postId: args.data.postId
+      ...args.data
     }
 
     db.comments.push(comment)
