@@ -6,7 +6,7 @@ import Post from './resolvers/Post'
 import User from './resolvers/User'
 import Comment from './resolvers/Comment'
 import Mutation from './resolvers/Mutation'
-
+import './prisma' 
 const pubsub = new PubSub()
 const resolvers = {
     Query,
