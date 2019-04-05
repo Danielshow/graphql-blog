@@ -25,12 +25,12 @@ type Subscription {
 
 type PostSubsriptionPayload {
   mutation: MutationType! 
-  data: Post!
+  node: Post
 },
 
 type CommentSubsriptionPayload {
   mutation: MutationType! 
-  data: Comment!
+  node: Comment
 }
 
 enum MutationType {
