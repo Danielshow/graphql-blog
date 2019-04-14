@@ -9,6 +9,7 @@ type Query {
 type Mutation {
   createUser(data: CreateUserInput!): AuthPayload!
   deleteUser(id: ID!): User!
+  loginUser(data: LoginInput!):AuthPayload! 
   updateUser(id: ID!, data: UpdateUserInput!): User!
   createComment(data: CreateCommentInput!): Comment!
   deleteComment(id: ID!): Comment!
@@ -42,6 +43,11 @@ enum MutationType {
 type AuthPayload {
   token: String!
   user: User!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
 }
 
 input CreateUserInput {
