@@ -8,9 +8,9 @@ type Query {
  
 type Mutation {
   createUser(data: CreateUserInput!): AuthPayload!
-  deleteUser(id: ID!): User!
+  deleteUser: User!
   loginUser(data: LoginInput!):AuthPayload! 
-  updateUser(id: ID!, data: UpdateUserInput!): User!
+  updateUser(data: UpdateUserInput!): User!
   createComment(data: CreateCommentInput!): Comment!
   deleteComment(id: ID!): Comment!
   updateComment(id: ID!, data: UpdateCommentInput!): Comment!
@@ -65,7 +65,6 @@ input CreatePostInput {
   title: String!
   body: String!
   published: Boolean!
-  author: ID!
 }
 
 input UpdatePostInput {
@@ -76,7 +75,6 @@ input UpdatePostInput {
 
 input CreateCommentInput {
   text: String!
-  author: ID!
   post: ID!
 }
 
