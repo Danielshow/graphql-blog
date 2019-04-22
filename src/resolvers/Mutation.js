@@ -74,7 +74,7 @@ const Mutation = {
     }, info)
   },
 
-  async createPost(parent, args, { prisma, pubsub, request }, info) {
+  async createPost(parent, args, { prisma, request }, info) {
     const userId = getUserId(request)
     const isUserExist = await prisma.exists.User({id: userId})
 
@@ -96,7 +96,7 @@ const Mutation = {
     }, info)
   },
 
-  async deletePost(parent, args, { prisma, pubsub, request }, info) {
+  async deletePost(parent, args, { prisma, request }, info) {
     const userId = getUserId(request)
     const isPostExist = await prisma.exists.Post({ 
         id: args.id,
@@ -112,7 +112,7 @@ const Mutation = {
     }}, info)
   },
 
-  async updatePost(parent, args, { prisma, pubsub, request }, info) {
+  async updatePost(parent, args, { prisma, request }, info) {
     const userId = getUserId(request)
     const { id, data } = args
     const post = await prisma.exists.Post({
