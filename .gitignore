@@ -1,5 +1,6 @@
-
+dist/
 node_modules
 *.swo
 *.swp
-
+*.log
+config/
