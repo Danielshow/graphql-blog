@@ -5,7 +5,8 @@ const Query = {
       const opArgs = { 
         skip: args.skip,
         first: args.skip,
-        after: args.skip
+        after: args.skip,
+        orderBy: args.orderBy,
       }
       return prisma.query.comments(opArgs, info)
     },
@@ -15,6 +16,7 @@ const Query = {
         first: args.first,
         skip: args.skip,
         after: args.after,
+        orderBy: args.orderBy,
         where: {
           published: true
         }
@@ -34,6 +36,7 @@ const Query = {
         first: args.first,
         skip: args.skip,
         after: args.after,
+        orderBy: args.orderBy,
       }
       if (args.query) {
         opArgs.where = {
@@ -83,6 +86,7 @@ const Query = {
       first: args.first,
       skip: args.skip,
       after: args.after,
+      orderBy: args.orderBy,
       where: {
         author: {
           id: userId
