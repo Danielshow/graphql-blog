@@ -2,19 +2,19 @@ import getUserId from '../utils/getUserId'
 
 const Query = {
     comments(parent, args, { prisma }, info) {
-      const opArgs = {}
-      if (args.query) {
-        opArgs.where = {
-          OR: [{
-            name_contains: args.query
-          }]
-        }
+      const opArgs = { 
+        skip: args.skip,
+        first: args.skip,
+        after: args.skip
       }
       return prisma.query.comments(opArgs, info)
     },
 
     posts(parent, args, { prisma }, info) {
       const opArgs = {
+        first: args.first,
+        skip: args.skip,
+        after: args.after,
         where: {
           published: true
         }
@@ -30,7 +30,19 @@ const Query = {
     },
 
     users(parent, args, { prisma }, info) {
-      return prisma.query.users(null, info)
+      const opArgs = {
+        first: args.first,
+        skip: args.skip,
+        after: args.after,
+      }
+      if (args.query) {
+        opArgs.where = {
+          OR: [{
+            name_contains: args.query
+          }]
+        }
+      }
+      return prisma.query.users(opArgs, info)
     },
 
     async me(parent, args, { prisma, request }, info) {
@@ -68,6 +80,9 @@ const Query = {
   myPosts(parent, args, { prisma, request }, info) {
     const userId = getUserId(request)
     const opArgs = {
+      first: args.first,
+      skip: args.skip,
+      after: args.after,
       where: {
         author: {
           id: userId
