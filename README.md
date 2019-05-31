@@ -1,13 +1,33 @@
-# graphql-basics
-Learn the basics of GraphQL by building a simple GraphQL application🎉🎊🏹
+# Blog Application GraphQL API
+A blogging application that allows user create post, comments on post, filter post based on given criteria🎉🎊🏹
 
-TOOLS USED
+- Users can signup and login
+- Login users can create posts
+- Login users can delete and update post
+- Users can comment on post
+- Users can filter post based on some criteria
+
+## Stack
+- Javascript
+- NodeJS
+- GraphQL
+- Express
 - GraphQL Yoga
-- GraphQL CLI
 - Prisma
 - Prisma binding
 
 # Blogging Application
 [Link](https://show-blogg.herokuapp.com/)
 
-## Visit the Link above to interact with the application
+### Setup
+- CLone this application
+- Download docker to host prisma container
+- run `npm install`
+- run `npm run start:dev`
+
+## Limitation
+Still in Development
+
+## Contribution
+- Clone this Repository and raise a pull request
+
